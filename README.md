@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio v2
 
-## Getting Started
+Personal developer portfolio for Dibbo Chakraborty. Next.js App Router, TypeScript strict, Tailwind CSS v4, Motion, Resend contact form, MDX case studies.
 
-First, run the development server:
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+bun install
+cp .env.example .env.local   # fill in Resend keys for the contact form
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Updating the site
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All personal content lives in `src/data/` (typed via `src/types/types.ts`). Components never hardcode it. Do not edit the types to add content; use what exists.
 
-## Learn More
+### Add a project
 
-To learn more about Next.js, take a look at the following resources:
+Edit `src/data/projects.ts` and append to the `projects` array:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```ts
+{
+  slug: "my-app",
+  title: "My App",
+  summary: "One-line summary.",
+  highlights: ["Thing you built", "Another outcome"],
+  stack: ["TypeScript", "Next.js"],
+  links: { repository: "https://github.com/..." }, // + optional live, docs
+  // optional: image, featured, caseStudy
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `featured: true` renders first as a large card; the rest render in array order in a 2-column grid.
+- `image: { src: "/projects/my-app.png", alt: "..." }` — put the file in `public/projects/`. Missing images show a neutral placeholder.
+- `links.live` / `links.docs` render only when present.
 
-## Deploy on Vercel
+### Add a case study
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Set `caseStudy: true` on the project in `src/data/projects.ts`.
+2. Create `content/<slug>.mdx` (e.g. `content/my-app.mdx`) with your headings and real content.
+3. The page appears at `/projects/<slug>`. Only slugs with `caseStudy: true` are pre-rendered (`dynamicParams = false`, others 404).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Replace resume and photo
+
+- Resume: add `public/resume.pdf` and point `resume` in `src/data/profile.ts` at `/resume.pdf`. (Currently it points at a Google Drive URL.)
+- Photo: add `public/me.jpg`. The About section checks for it server-side with `fs.existsSync` and falls back to an initials avatar until it exists.
+
+### Env vars
+
+| Var | Used where | Required? |
+| --- | --- | --- |
+| `RESEND_API_KEY` | Contact server action (sends via Resend) | Only for sending mail; form returns a friendly error when missing |
+| `CONTACT_FROM_EMAIL` | `from` address for contact emails (e.g. `contact@yourdomain.com`) | Same as above |
+
+Both are server-only (never `NEXT_PUBLIC_*`). The contact form also has a honeypot (`website`) and an in-memory rate limit (3 per 10 min per IP) in `src/lib/rate-limit.ts`.
+
+### Deploy on Vercel
+
+1. Push to GitHub, import the repo in Vercel.
+2. Set `RESEND_API_KEY` and `CONTACT_FROM_EMAIL` in Project Settings → Environment Variables.
+3. Deploy. `sitemap.ts` / `robots.ts` / `opengraph-image.tsx` are automatic; Analytics is already wired in `src/app/layout.tsx`.
+
+## Scripts
+
+- `bun dev` — dev server (Turbopack)
+- `bun run build` — production build
+- `bunx tsc --noEmit` — typecheck
+- `bunx biome check` — lint/format (`lint` script)

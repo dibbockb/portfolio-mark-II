@@ -1,1 +1,61 @@
 @import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+
+/* Theme tokens (Tailwind v4) + shadcn CSS variables, dark only. */
+:root {
+  --background: #151515;
+  --card: #1e1e1e;
+  --card-hover: #252525;
+  --foreground: #ededed;
+  --muted-foreground: #a0a0a0;
+  --primary: #ffffff;
+  --primary-foreground: #151515;
+  --accent: #ffffff;
+  --accent-foreground: #151515;
+  --border: rgba(255, 255, 255, 0.08);
+  --ring: rgba(255, 255, 255, 0.4);
+  --radius: 12px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-card: var(--card);
+  --color-card-hover: var(--card-hover);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --radius-lg: var(--radius);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Visible keyboard focus everywhere. */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Offset anchored sections below the sticky navbar. */
+section[id] {
+  scroll-margin-top: 88px;
+}
