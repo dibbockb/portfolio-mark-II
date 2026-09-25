@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { type ContactResult, sendContactMessage } from "@/app/actions/contact";
 import { Button } from "@/components/ui/button";
 import { Input, Label, Textarea } from "@/components/ui/field";
+import { Spinner } from "./ui/spinner";
 
 const initialState: ContactResult = { ok: false, message: "" };
 
@@ -117,7 +118,7 @@ export function ContactForm() {
       </div>
 
       <Button type="submit" disabled={isPending}>
-        {isPending ? "Sending…" : "Send message"}
+        {isPending ? <Spinner /> : "Send message"}
       </Button>
 
       <p aria-live="polite" className="min-h-5 text-sm text-muted-foreground">
