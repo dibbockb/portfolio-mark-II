@@ -2,7 +2,7 @@ export type Profile = {
   name: string;
   role: string;
   tagline: string;
-  availibility?: string;
+  availability?: string;
   location: string;
   timezone: string;
   email: string;

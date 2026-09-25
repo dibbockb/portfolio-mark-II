@@ -25,7 +25,7 @@ export function Contact({ profile }: { profile: Profile }) {
               {profile.email}
             </a>
             <p className="text-sm text-muted-foreground">
-              {profile.availibility}
+              {profile.availability}
             </p>
           </div>
         </Reveal>

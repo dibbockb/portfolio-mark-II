@@ -7,7 +7,7 @@ export const skills: SkillGroup[] = [
   },
   {
     label: "Frontend",
-    items: ["React", "Next.js", "Tailwind CSS"],
+    items: ["React", "Next.js", "Tailwind CSS", "Motion"],
   },
   {
     label: "Backend",
@@ -19,6 +19,6 @@ export const skills: SkillGroup[] = [
   },
   {
     label: "Tools & Services",
-    items: ["Git", "GitHub", "Postman", "Stripe", "Vercel"],
+    items: ["Git", "GitHub", "Stripe", "Postman", "OpenAPI", "Vercel"],
   },
 ];

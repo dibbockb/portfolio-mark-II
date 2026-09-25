@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { profile } from "@/data/profile";
 import { projects } from "@/data/projects";
+import { Reveal } from "@/components/reveal";
 
 export const dynamicParams = false;
 
@@ -47,60 +48,62 @@ export default async function CaseStudyPage({
   }
 
   return (
-    <article className="mx-auto w-full max-w-[1100px] px-4 py-12 sm:px-6">
-      <Link
-        href="/#work"
-        className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground"
-      >
-        ← Back to work
-      </Link>
-      <h1 className="mt-6 text-3xl font-bold tracking-tight sm:text-4xl">
-        {project.title}
-      </h1>
-      <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
-        {project.summary}
-      </p>
-      <div className="mt-4 flex flex-wrap gap-1.5">
-        {project.stack.map((tech) => (
-          <Badge key={tech}>{tech}</Badge>
-        ))}
-      </div>
-      <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
-        {project.links.docs && (
-          <a
-            href={project.links.docs}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-foreground underline underline-offset-4"
-          >
-            API docs
-          </a>
-        )}
-        {project.links.live && (
-          <a
-            href={project.links.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-foreground underline underline-offset-4"
-          >
-            Live
-          </a>
-        )}
-        <a
-          href={project.links.repository}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-foreground underline underline-offset-4"
+    <Reveal>
+      <article className="mx-auto w-full max-w-[1100px] px-4 py-12 sm:px-6">
+        <Link
+          href="/#work"
+          className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground"
         >
-          Repo
-        </a>
-      </div>
-      <div className="prose prose-invert mt-10 max-w-none">
-        <Post />
-      </div>
-      <p className="mt-10 text-sm text-muted-foreground">
-        Contact: <a href={`mailto:${profile.email}`}>{profile.email}</a>
-      </p>
-    </article>
+          ← Back to work
+        </Link>
+        <h1 className="mt-6 text-3xl font-bold tracking-tight sm:text-4xl">
+          {project.title}
+        </h1>
+        <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
+          {project.summary}
+        </p>
+        <div className="mt-4 flex flex-wrap gap-1.5">
+          {project.stack.map((tech) => (
+            <Badge key={tech}>{tech}</Badge>
+          ))}
+        </div>
+        <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+          {project.links.docs && (
+            <a
+              href={project.links.docs}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground underline underline-offset-4"
+            >
+              API docs
+            </a>
+          )}
+          {project.links.live && (
+            <a
+              href={project.links.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground underline underline-offset-4"
+            >
+              Live
+            </a>
+          )}
+          <a
+            href={project.links.repository}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-foreground underline underline-offset-4"
+          >
+            Repo
+          </a>
+        </div>
+        <div className="prose prose-invert mt-10 max-w-none">
+          <Post />
+        </div>
+        <p className="mt-10 text-sm text-muted-foreground">
+          Contact: <a href={`mailto:${profile.email}`}>{profile.email}</a>
+        </p>
+      </article>
+    </Reveal>
   );
 }

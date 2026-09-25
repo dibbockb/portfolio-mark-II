@@ -10,7 +10,7 @@
 !.yarn/releases
 !.yarn/versions
 README.md
-
+...codebase.xml
 # testing
 /coverage
 

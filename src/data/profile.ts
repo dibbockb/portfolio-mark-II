@@ -5,10 +5,10 @@ export const profile: Profile = {
   role: "Full Stack Developer",
   tagline:
     "I build software with a bias toward scalability, simplicity, and thoughtful design.",
-  // availibility: "Open to remote junior full-stack roles",
+  // availability: "Open to remote junior full-stack roles",
   location: "Bangladesh",
   timezone: "UTC+6",
-  email: "dibbo@dibbckb.com",
+  email: "dibbo@dibbockb.com",
   siteUrl: "https://dibbockb.com",
   resume:
     "https://drive.google.com/file/d/16CpFOOEgUlHbOU65PsnP6-UVOP-MwnoG/view",

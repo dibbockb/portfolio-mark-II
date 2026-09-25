@@ -54,14 +54,14 @@ function ProjectImage({
 function ProjectLinks({ project }: { project: Project }) {
   return (
     <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
-      {project.caseStudy && (
+      {/* {project.caseStudy && (
         <a
           href={`/projects/${project.slug}`}
           className="text-foreground underline underline-offset-4 hover:text-white"
         >
           Case study
         </a>
-      )}
+      )} */}
       {project.links.docs && (
         <a
           href={project.links.docs}
