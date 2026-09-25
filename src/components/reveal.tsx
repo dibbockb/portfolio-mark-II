@@ -1,13 +1,10 @@
 "use client";
-
-import { motion } from "motion/react";
+import { easeOut, motion } from "motion/react";
 import type { ReactNode } from "react";
 
-// Subtle fade-and-rise used for sections and cards.
-// whileInView + once keeps it cheap; delay staggers grids.
 export function Reveal({
   children,
-  delay = 0,
+  delay = 0.08,
   className,
 }: {
   children: ReactNode;
@@ -16,11 +13,12 @@ export function Reveal({
 }) {
   return (
     <motion.div
+      initial={{ opacity: 0, y: 20, }}
+      whileInView={{ opacity: 1, y: 0, }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.3, ease: easeOut, delay }}
+      style={{ willChange: "filter, opacity, transform" }}
       className={className}
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.4, ease: "easeOut", delay }}
     >
       {children}
     </motion.div>
