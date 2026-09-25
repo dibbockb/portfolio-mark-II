@@ -4,8 +4,8 @@ export const profile: Profile = {
   name: "Dibbo Chakraborty",
   role: "Full Stack Developer",
   tagline:
-    "I build APIs and full-stack apps with TypeScript, PostgreSQL, and Prisma.",
-  availibility: "Open to remote junior full-stack roles",
+    "I build software with a bias toward scalability, simplicity, and thoughtful design.",
+  // availibility: "Open to remote junior full-stack roles",
   location: "Bangladesh",
   timezone: "UTC+6",
   email: "dibbo@dibbckb.com",
