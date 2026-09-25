@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useRef } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { type ContactResult, sendContactMessage } from "@/app/actions/contact";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,11 @@ export function ContactForm() {
   );
   const formRef = useRef<HTMLFormElement>(null);
   const announcedRef = useRef(false);
+  const [formValues, setFormValues] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
   // Reset + toast only after a real success (not on first render).
   useEffect(() => {
@@ -24,6 +29,7 @@ export function ContactForm() {
       announcedRef.current = true;
       toast.success(state.message);
       formRef.current?.reset();
+      setFormValues({ name: "", email: "", message: "" });
     } else if (!state.ok) {
       announcedRef.current = false;
     }
@@ -55,6 +61,10 @@ export function ContactForm() {
           name="name"
           type="text"
           autoComplete="name"
+          value={formValues.name}
+          onChange={(event) =>
+            setFormValues((values) => ({ ...values, name: event.target.value }))
+          }
           required
           aria-invalid={Boolean(fieldErrors.name)}
           aria-describedby={fieldErrors.name ? "contact-name-error" : undefined}
@@ -77,6 +87,13 @@ export function ContactForm() {
           name="email"
           type="email"
           autoComplete="email"
+          value={formValues.email}
+          onChange={(event) =>
+            setFormValues((values) => ({
+              ...values,
+              email: event.target.value,
+            }))
+          }
           required
           aria-invalid={Boolean(fieldErrors.email)}
           aria-describedby={
@@ -100,6 +117,13 @@ export function ContactForm() {
           id="contact-message"
           name="message"
           rows={5}
+          value={formValues.message}
+          onChange={(event) =>
+            setFormValues((values) => ({
+              ...values,
+              message: event.target.value,
+            }))
+          }
           required
           aria-invalid={Boolean(fieldErrors.message)}
           aria-describedby={
