@@ -22,7 +22,7 @@ export function Label({
 }
 
 const fieldStyles =
-  "w-full rounded-[12px] border border-border bg-card px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground transition-colors hover:border-white/20 focus:border-white/30 focus:outline-none";
+  "w-full rounded-[12px] border border-border bg-card px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground transition-colors hover:border-white/30 focus:border-white/30 focus:outline-none";
 
 export function Input({
   className,

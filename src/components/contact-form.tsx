@@ -120,7 +120,6 @@ export function ContactForm() {
         {isPending ? "Sending…" : "Send message"}
       </Button>
 
-      {/* Polite status for screen readers; toast covers sighted users. */}
       <p aria-live="polite" className="min-h-5 text-sm text-muted-foreground">
         {!state.ok && state.message ? state.message : ""}
       </p>
