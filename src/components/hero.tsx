@@ -17,13 +17,13 @@ export function Hero({ profile }: { profile: Profile }) {
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
           {profile.tagline}
         </p>
-        <p className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
+        {/* <p className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
           <span
             aria-hidden="true"
             className="inline-block h-2 w-2 rounded-full bg-emerald-400"
           />
-          {profile.availibility}
-        </p>
+          {profile.availability}
+        </p> */}
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <a
             href="#work"
