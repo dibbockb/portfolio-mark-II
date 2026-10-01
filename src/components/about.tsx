@@ -4,8 +4,6 @@ import Image from "next/image";
 import { Reveal } from "@/components/reveal";
 import type { Profile } from "@/types/types";
 
-// Server component: checks the filesystem so a missing /me.jpg
-// renders initials instead of a broken image.
 export function About({ profile }: { profile: Profile }) {
   const photoExists = existsSync(join(process.cwd(), "public", "me.jpg"));
   const initials = profile.name
@@ -23,9 +21,9 @@ export function About({ profile }: { profile: Profile }) {
       </Reveal>
       <Reveal delay={0.05}>
         <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-start">
-          {photoExists ? (
+          {!photoExists ? (
             <Image
-              src="/me.jpg"
+              src="https://res.cloudinary.com/lpqu4s3d/image/upload/v1790848044/portraitBNW.png"
               alt={`Photo of ${profile.name}`}
               width={128}
               height={128}

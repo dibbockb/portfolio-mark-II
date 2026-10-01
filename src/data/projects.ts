@@ -13,34 +13,17 @@ export const projects: Project[] = [
     ],
     stack: ["TypeScript", "Express", "Prisma", "PostgreSQL", "Stripe", "Zod"],
     links: {
-      docs: "https://api.rentnest.dibbockb.com/",
+      live: "https://rentnest.dibbockb.com/",
       repository: "https://github.com/dibbockb/rentnest",
     },
     image: {
-      src: "/projects/rentnest.png",
-      alt: "RentNest database schema diagram",
+      src: "https://res.cloudinary.com/lpqu4s3d/image/upload/v1790847592/image_454.png",
+      alt: "RentNest landing page",
     },
     featured: true,
-    caseStudy: true,
-  },
-
-  {
-    slug: "devpulse",
-    title: "DevPulse",
-    summary:
-      "Issue tracker API with JWT auth, role-based permissions, and filtering.",
-    highlights: [
-      "bcrypt password hashing and a JWT auth flow",
-      "Admin and maintainer permissions (RBAC)",
-      "Filtering and sorting done in the database",
-    ],
-    stack: ["Node.js", "PostgreSQL", "JWT", "bcrypt"],
-    links: {
-      repository: "https://github.com/dibbockb/devpulse-backend",
-    },
     caseStudy: false,
   },
-
+  // ---
   {
     slug: "etuitionbd",
     title: "EtuitionBD",
@@ -57,9 +40,33 @@ export const projects: Project[] = [
       repository: "https://github.com/dibbockb/etuitionbd",
     },
     image: {
-      src: "/projects/etuitionbd.png",
-      alt: "EtuitionBD dashboard screenshot",
+      src: "https://res.cloudinary.com/lpqu4s3d/image/upload/v1790847585/955EAF10-3F2A-473A-B194-C22847FFFA50.png",
+      alt: "EtuitionBD landing page",
     },
     caseStudy: false,
   },
+
+  // ---
+  {
+    slug: "devpulse",
+    title: "DevPulse",
+    summary:
+      "Issue tracker API with JWT auth, role-based permissions, and filtering.",
+    highlights: [
+      "bcrypt password hashing and a JWT auth flow",
+      "Admin and maintainer permissions (RBAC)",
+      "Filtering and sorting done in the database",
+    ],
+    stack: ["Node.js", "PostgreSQL", "JWT", "bcrypt"],
+    links: {
+      repository: "https://github.com/dibbockb/devpulse-backend",
+    },
+    // image: {
+    // src: "https://res.cloudinary.com/lpqu4s3d/image/upload/v1790847897/19641EC9-1862-471E-9FC3-9907FD5576D3.png",
+    // alt: "Devpulse server homepage"
+    // },
+    caseStudy: false,
+  },
+
+
 ];

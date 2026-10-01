@@ -47,7 +47,7 @@ export default async function CaseStudyPage({
   }
 
   return (
-    <article className="mx-auto w-full max-w-[1100px] px-4 py-12 sm:px-6">
+    <article className="mx-auto w-full max-w-275 px-4 py-12 sm:px-6">
       <Link
         href="/#work"
         className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground"
