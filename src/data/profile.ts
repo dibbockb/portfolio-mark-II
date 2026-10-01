@@ -15,7 +15,7 @@ export const profile: Profile = {
 
   about: [
     "I'm a backend-focused developer who builds APIs and full-stack apps with TypeScript, PostgreSQL, and Prisma. My largest project, RentNest, is a rental marketplace API with Stripe payments and role-based access.",
-    "I'm looking for remote junior backend or full-stack roles.",
+    "I'm looking for remote backend or full-stack roles.",
   ],
 
   links: {

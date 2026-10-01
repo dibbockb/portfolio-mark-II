@@ -41,7 +41,6 @@ export default async function CaseStudyPage({
 
   let Post: React.ComponentType;
   try {
-    // content/ lives at the repo root (per spec), so import relatively.
     ({ default: Post } = await import(`../../../../content/${slug}.mdx`));
   } catch {
     notFound();
@@ -49,7 +48,7 @@ export default async function CaseStudyPage({
 
   return (
     <Reveal>
-      <article className="mx-auto w-full max-w-[1100px] px-4 py-12 sm:px-6">
+      <article className="mx-auto w-full max-w-275 px-4 py-12 sm:px-6">
         <Link
           href="/#work"
           className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground"

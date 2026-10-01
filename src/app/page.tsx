@@ -10,7 +10,7 @@ import { skills } from "@/data/skills";
 // Home: all content comes from src/data files, never hardcoded here.
 export default function HomePage() {
   return (
-    <div id="top" className="mx-auto w-full max-w-[1100px] px-4 sm:px-6">
+    <div id="top" className="mx-auto w-full max-w-275 px-4 sm:px-6">
       <Hero profile={profile} />
       <div className="space-y-16 pb-16 md:space-y-24 md:pb-24">
         <Work projects={projects} />
