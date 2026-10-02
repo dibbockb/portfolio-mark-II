@@ -2,19 +2,23 @@ import type { SkillGroup } from "@/types/types";
 
 export const skills: SkillGroup[] = [
   {
+    label: "Languages",
+    items: ["TypeScript", "JavaScript"],
+  },
+  {
     label: "Frontend",
-    items: ["React", "Next.js", "Tailwind CSS"],
+    items: ["React", "Next.js", "Tailwind CSS", "Motion"],
   },
   {
     label: "Backend",
-    items: ["TypeScript", "Node.js", "Express", "Prisma", "JWT", "Zod"],
+    items: ["Node.js", "Express", "Prisma", "Zod", "JWT"],
   },
   {
     label: "Database",
-    items: ["PostgreSQL", "SQL", "MongoDB"],
+    items: ["PostgreSQL", "MongoDB"],
   },
   {
-    label: "Tools",
-    items: ["Git", "Postman", "Stripe", "Vercel"],
+    label: "Tools & Services",
+    items: ["Git", "GitHub", "Stripe", "Postman", "OpenAPI", "Vercel"],
   },
 ];

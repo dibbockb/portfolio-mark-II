@@ -1,14 +1,14 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
 import { Footer } from "@/components/footer";
 import { MotionProvider } from "@/components/motion-provider";
 import { Navbar } from "@/components/navbar";
 import { profile } from "@/data/profile";
 import "./globals.css";
+import { Hanken_Grotesk } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"], display: "swap" });
+const hankenGrotesk = Hanken_Grotesk({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.siteUrl),
@@ -38,7 +38,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-background text-foreground`}>
+      <body className={`${hankenGrotesk.className} bg-background text-foreground`}>
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-primary focus:px-3 focus:py-2 focus:text-sm focus:text-primary-foreground"

@@ -29,7 +29,7 @@ export function Contact({ profile }: { profile: Profile }) {
               <CopyEmailButton email={profile.email} />
             </div>
             <p className="text-sm text-muted-foreground">
-              {profile.availibility}
+              {profile.availability}
             </p>
           </div>
         </Reveal>
