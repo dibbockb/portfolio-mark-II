@@ -29,7 +29,7 @@ export function SocialLinks({
           target="_blank"
           rel="noopener noreferrer"
           aria-label={label}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-border text-muted-foreground transition-colors hover:border-white/20 hover:bg-card-hover hover:text-foreground"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border text-muted-foreground transition-colors hover:border-white/20 hover:bg-card-hover hover:text-foreground"
         >
           <Icon size={18} aria-hidden="true" />
         </a>

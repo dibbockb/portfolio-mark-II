@@ -13,7 +13,7 @@ export function Skills({ groups }: { groups: SkillGroup[] }) {
       <dl className="mt-6 space-y-5">
         {groups.map((group, i) => (
           <Reveal key={group.label} delay={Math.min(i * 0.05, 0.2)}>
-            <div className="rounded-[12px] border border-border bg-card p-5">
+            <div className="rounded-xl border border-border bg-card p-5">
               <dt className="text-sm font-semibold text-foreground">
                 {group.label}
               </dt>

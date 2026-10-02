@@ -127,7 +127,7 @@ export function ProjectCard({
   return (
     <article
       className={cn(
-        "flex flex-col gap-5 rounded-[12px] border border-border bg-card p-5 transition-colors hover:border-white/20 hover:bg-card-hover sm:p-6",
+        "flex flex-col gap-5 rounded-xl border border-border bg-card p-5 transition-colors hover:border-white/20 hover:bg-card-hover sm:p-6",
         large && "md:flex-row md:items-start",
       )}
     >

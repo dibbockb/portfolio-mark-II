@@ -30,7 +30,7 @@ function MdxImage({ src, alt }: ImgHTMLAttributes<HTMLImageElement>) {
       width={900}
       height={560}
       sizes="(max-width: 768px) 100vw, 800px"
-      className="h-auto w-full rounded-[12px] border border-border"
+      className="h-auto w-full rounded-xl border border-border"
     />
   );
 }
@@ -42,7 +42,7 @@ export function useMDXComponents(): MDXComponents {
     // Keep code blocks readable on the dark theme.
     pre: ({ children, ...props }) => (
       <pre
-        className="overflow-x-auto rounded-[12px] border border-border bg-card p-4 text-sm"
+        className="overflow-x-auto rounded-xl border border-border bg-card p-4 text-sm"
         {...props}
       >
         {children}

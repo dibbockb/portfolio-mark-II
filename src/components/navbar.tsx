@@ -17,7 +17,7 @@ export function Navbar({ name }: { name: string }) {
     <header className="sticky top-0 z-50 border-b border-border bg-background">
       <nav
         aria-label="Primary"
-        className="mx-auto flex h-16 w-full max-w-[1100px] items-center justify-between px-4 sm:px-6"
+        className="mx-auto flex h-16 w-full max-w-275 items-center justify-between px-4 sm:px-6"
       >
         <a href="#top" className="text-sm font-semibold text-foreground">
           {name}
@@ -29,7 +29,7 @@ export function Navbar({ name }: { name: string }) {
                 href={`#${link.id}`}
                 aria-current={active === link.id ? "true" : undefined}
                 className={cn(
-                  "inline-flex min-h-[44px] items-center px-3 h-11 text-sm transition-colors",
+                  "inline-flex min-h-11 items-center px-3 h-11 text-sm transition-colors",
                   active === link.id
                     ? "text-foreground"
                     : "text-muted-foreground hover:text-foreground",

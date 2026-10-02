@@ -42,7 +42,7 @@ export function ContactForm() {
       {/* Honeypot: visually hidden, not display:none, so bots still fill it. */}
       <div
         aria-hidden="true"
-        className="absolute -left-[9999px] h-px w-px overflow-hidden"
+        className="absolute left-[-9999px] h-px w-px overflow-hidden"
       >
         <label htmlFor="website">Website</label>
         <input

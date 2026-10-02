@@ -27,7 +27,7 @@ export function Hero({ profile }: { profile: Profile }) {
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <a
             href="#work"
-            className="inline-flex h-10 items-center justify-center rounded-[12px] bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-white/85"
+            className="inline-flex h-10 items-center justify-center rounded-xl bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-white/85"
           >
             View work
           </a>
@@ -35,7 +35,7 @@ export function Hero({ profile }: { profile: Profile }) {
             href={profile.resume}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-10 items-center justify-center rounded-[12px] border border-border px-4 text-sm font-medium text-foreground transition-colors hover:border-white/20 hover:bg-card-hover"
+            className="inline-flex h-10 items-center justify-center rounded-xl border border-border px-4 text-sm font-medium text-foreground transition-colors hover:border-white/20 hover:bg-card-hover"
           >
             Resume
           </a>

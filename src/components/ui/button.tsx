@@ -14,7 +14,7 @@ export function Button({
   return (
     <button
       className={cn(
-        "inline-flex h-10 items-center justify-center gap-2 rounded-[12px] px-4 text-sm font-medium transition-colors",
+        "inline-flex h-10 items-center justify-center gap-2 rounded-xl px-4 text-sm font-medium transition-colors",
         "disabled:pointer-events-none disabled:opacity-50",
         variant === "primary" &&
           "bg-primary text-primary-foreground hover:bg-white/85",

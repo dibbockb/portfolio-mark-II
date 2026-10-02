@@ -16,7 +16,7 @@ export function Contact({ profile }: { profile: Profile }) {
           <ContactForm />
         </Reveal>
         <Reveal delay={0.1}>
-          <div className="space-y-3 rounded-[12px] border border-border bg-card p-5 sm:p-6">
+          <div className="space-y-3 rounded-xl border border-border bg-card p-5 sm:p-6">
             <p className="text-sm text-muted-foreground">Prefer email?</p>
             <a
               href={`mailto:${profile.email}`}
