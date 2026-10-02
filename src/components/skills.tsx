@@ -10,14 +10,14 @@ export function Skills({ groups }: { groups: SkillGroup[] }) {
           Skills
         </h2>
       </Reveal>
-      <dl className="mt-6 space-y-5">
+      <dl className="mt-4 space-y-3">
         {groups.map((group, i) => (
           <Reveal key={group.label} delay={Math.min(i * 0.05, 0.2)}>
-            <div className="rounded-[12px] border border-border bg-card p-5">
+            <div className="rounded-[12px] border border-border bg-card px-3.5 py-3">
               <dt className="text-sm font-semibold text-foreground">
                 {group.label}
               </dt>
-              <dd className="mt-3 flex flex-wrap gap-1.5">
+              <dd className="mt-2 flex flex-wrap gap-1.5">
                 {group.items.map((item) => (
                   <span
                     key={item}

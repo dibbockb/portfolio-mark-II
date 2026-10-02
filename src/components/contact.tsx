@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/contact-form";
+import { CopyEmailButton } from "@/components/copy-email-button";
 import { Reveal } from "@/components/reveal";
 import type { Profile } from "@/types/types";
 
@@ -18,12 +19,15 @@ export function Contact({ profile }: { profile: Profile }) {
         <Reveal delay={0.1}>
           <div className="space-y-3 rounded-[12px] border border-border bg-card p-5 sm:p-6">
             <p className="text-sm text-muted-foreground">Prefer email?</p>
-            <a
-              href={`mailto:${profile.email}`}
-              className="break-all text-lg font-medium text-foreground underline underline-offset-4 hover:text-white"
-            >
-              {profile.email}
-            </a>
+            <div className="flex items-center gap-2">
+              <a
+                href={`mailto:${profile.email}`}
+                className="break-all text-lg font-medium text-foreground underline underline-offset-4 hover:text-white"
+              >
+                {profile.email}
+              </a>
+              <CopyEmailButton email={profile.email} />
+            </div>
             <p className="text-sm text-muted-foreground">
               {profile.availibility}
             </p>
