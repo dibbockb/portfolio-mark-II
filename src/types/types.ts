@@ -35,6 +35,7 @@ export type Project = {
     src: string;
     webmSrc?: string;
     poster?: string;
+    startDelayMs?: number;
   };
   featured?: boolean;
   caseStudy?: boolean;
