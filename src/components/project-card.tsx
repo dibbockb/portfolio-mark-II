@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
+import { ProjectVideo } from "@/components/project-video";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/types/types";
 
@@ -29,21 +30,13 @@ function ProjectImage({
   if (project.video) {
     return (
       <div className={wrapper}>
-        <video
+        <ProjectVideo
+          src={project.video.src}
+          webmSrc={project.video.webmSrc}
           poster={project.video.poster ?? project.image?.src}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-label={project.image?.alt ?? `${project.title} demo`}
-          className="aspect-[8/5] h-auto w-full object-cover"
-        >
-          {project.video.webmSrc && (
-            <source src={project.video.webmSrc} type="video/webm" />
-          )}
-          <source src={project.video.src} type="video/mp4" />
-        </video>
+          label={project.image?.alt ?? `${project.title} demo`}
+          delayMs={project.video.startDelayMs ?? 500}
+        />
       </div>
     );
   }
