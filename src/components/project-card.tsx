@@ -26,6 +26,27 @@ function ProjectImage({
     "overflow-hidden rounded-[12px] border border-border bg-background",
     large ? "md:w-2/5" : "w-full",
   );
+  if (project.video) {
+    return (
+      <div className={wrapper}>
+        <video
+          poster={project.video.poster ?? project.image?.src}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label={project.image?.alt ?? `${project.title} demo`}
+          className="aspect-[8/5] h-auto w-full object-cover"
+        >
+          {project.video.webmSrc && (
+            <source src={project.video.webmSrc} type="video/webm" />
+          )}
+          <source src={project.video.src} type="video/mp4" />
+        </video>
+      </div>
+    );
+  }
   if (!project.image) {
     return (
       <div className={wrapper}>
