@@ -18,8 +18,15 @@ export const projects: Project[] = [
       docs: "https://documenter.getpostman.com/view/54867039/2sBYHQ2NuZ"
     },
     image: {
-      src: "https://res.cloudinary.com/lpqu4s3d/video/upload/v1791710613/workmatch_demo.mp4",
+      src: "https://res.cloudinary.com/lpqu4s3d/video/upload/so_0/v1791710613/workmatch_demo.jpg",
       alt: "workmatch landing page",
+    },
+    video: {
+      src: "https://res.cloudinary.com/lpqu4s3d/video/upload/w_800,q_auto:good,vc_h264/v1791710613/workmatch_demo.mp4",
+      webmSrc:
+        "https://res.cloudinary.com/lpqu4s3d/video/upload/w_800,q_auto,vc_vp9/v1791710613/workmatch_demo.webm",
+      poster:
+        "https://res.cloudinary.com/lpqu4s3d/video/upload/so_0,w_800,q_auto/v1791710613/workmatch_demo.jpg",
     },
     featured: true,
     caseStudy: false,
