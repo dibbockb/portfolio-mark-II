@@ -1,3 +1,5 @@
+#This doc is generated with AI Assistance
+
 # Portfolio v2
 
 Personal developer portfolio for Dibbo Chakraborty. Next.js App Router, TypeScript strict, Tailwind CSS v4, Motion, Resend contact form, MDX case studies.

@@ -42,7 +42,7 @@ export function ContactForm() {
       {/* Honeypot: visually hidden, not display:none, so bots still fill it. */}
       <div
         aria-hidden="true"
-        className="absolute -left-[9999px] h-px w-px overflow-hidden"
+        className="absolute left[-9999px] h-px w-px overflow-hidden"
       >
         <label htmlFor="website">Website</label>
         <input
@@ -61,6 +61,7 @@ export function ContactForm() {
           name="name"
           type="text"
           autoComplete="name"
+          placeholder="say your name"
           value={formValues.name}
           onChange={(event) =>
             setFormValues((values) => ({ ...values, name: event.target.value }))
@@ -87,6 +88,7 @@ export function ContactForm() {
           name="email"
           type="email"
           autoComplete="email"
+          placeholder="where will I contact you back?"
           value={formValues.email}
           onChange={(event) =>
             setFormValues((values) => ({
@@ -117,6 +119,7 @@ export function ContactForm() {
           id="contact-message"
           name="message"
           rows={5}
+          placeholder="whatever you want to discuss"
           value={formValues.message}
           onChange={(event) =>
             setFormValues((values) => ({
