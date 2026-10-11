@@ -31,6 +31,11 @@ export type Project = {
     src: string;
     alt: string;
   };
+  video?: {
+    src: string;
+    webmSrc?: string;
+    poster?: string;
+  };
   featured?: boolean;
   caseStudy?: boolean;
 };
