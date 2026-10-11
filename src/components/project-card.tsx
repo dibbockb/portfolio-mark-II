@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "motion/react";
 import { Badge } from "@/components/ui/badge";
 import { ProjectVideo } from "@/components/project-video";
+import { EASE_RISE } from "@/components/reveal";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/types/types";
 
@@ -24,9 +28,11 @@ function ProjectImage({
   large?: boolean;
 }) {
   const wrapper = cn(
-    "overflow-hidden rounded-[12px] border border-border bg-background",
+    "group/media relative overflow-hidden rounded-[12px] border border-border bg-background",
     large ? "md:w-2/5" : "w-full",
   );
+  const dim =
+    "pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-500 ease-[cubic-bezier(0.1,0,0.18,1)] group-hover/media:bg-black/25";
   if (project.video) {
     return (
       <div className={wrapper}>
@@ -37,6 +43,7 @@ function ProjectImage({
           label={project.image?.alt ?? `${project.title} demo`}
           delayMs={project.video.startDelayMs ?? 500}
         />
+        <div aria-hidden="true" className={dim} />
       </div>
     );
   }
@@ -61,6 +68,7 @@ function ProjectImage({
         }
         className="h-auto w-full object-cover"
       />
+      <div aria-hidden="true" className={dim} />
     </div>
   );
 }
@@ -130,7 +138,7 @@ function ProjectBody({ project }: { project: Project }) {
   );
 }
 
-// Card hover only brightens border/bg (no lift/shadow), via CSS transition.
+// Card hover lifts slightly (scale + dim share the rise ease).
 export function ProjectCard({
   project,
   large = false,
@@ -139,14 +147,17 @@ export function ProjectCard({
   large?: boolean;
 }) {
   return (
-    <article
+    <motion.article
+      initial={false}
+      whileHover={{ scale: 1.02, y: -2 }}
+      transition={{ duration: 0.3, ease: EASE_RISE }}
       className={cn(
-        "flex flex-col gap-5 rounded-xl border border-border bg-card p-5 transition-colors hover:border-white/20 hover:bg-card-hover sm:p-6",
+        "group flex flex-col gap-5 rounded-xl border border-border bg-card p-5 transition-[background-color,border-color] duration-500 ease-[cubic-bezier(0.1,0,0.18,1)] hover:border-white/20 hover:bg-card-hover sm:p-6",
         large && "md:flex-row md:items-start",
       )}
     >
       <ProjectImage project={project} large={large} />
       <ProjectBody project={project} />
-    </article>
+    </motion.article>
   );
 }

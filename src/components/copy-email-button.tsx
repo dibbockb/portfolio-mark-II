@@ -38,7 +38,7 @@ export function CopyEmailButton({ email }: { email: string }) {
       title="Copy email address"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.85 }}
-      transition={{ duration: 0.15, ease: "easeOut" }}
+      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       className="inline-flex h-6 w-6 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
     >
       <AnimatePresence mode="wait" initial={false}>
@@ -47,7 +47,7 @@ export function CopyEmailButton({ email }: { email: string }) {
           initial={{ opacity: 0, scale: 0.6 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.6 }}
-          transition={{ duration: 0.15, ease: "easeOut" }}
+          transition={{ duration: 0.35, ease: [0.34, 1.56, 0.64, 1] }}
           className="inline-flex"
         >
           {copied ? (
