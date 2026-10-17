@@ -1,5 +1,7 @@
 "use client";
 
+import { useTheme } from "next-themes";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { cn } from "@/lib/utils";
 
@@ -12,6 +14,8 @@ const LINKS = [
 // Sticky navbar; active link follows scroll via IntersectionObserver.
 export function Navbar({ name }: { name: string }) {
   const active = useActiveSection(["work", "about", "contact"]);
+  const { theme, setTheme } = useTheme();
+  const currentTheme = theme === "light" ? "light" : "dark";
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background">
@@ -22,24 +26,32 @@ export function Navbar({ name }: { name: string }) {
         <a href="#top" className="text-sm font-semibold text-foreground">
           {name}
         </a>
-        <ul className="flex items-center gap-1 sm:gap-2">
-          {LINKS.map((link) => (
-            <li key={link.id}>
-              <a
-                href={`#${link.id}`}
-                aria-current={active === link.id ? "true" : undefined}
-                className={cn(
-                  "inline-flex min-h-11 items-center px-3 h-11 text-sm transition-colors",
-                  active === link.id
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground",
-                )}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="flex items-center gap-1 sm:gap-2">
+          <ul className="flex items-center gap-1 sm:gap-2">
+            {LINKS.map((link) => (
+              <li key={link.id}>
+                <a
+                  href={`#${link.id}`}
+                  aria-current={active === link.id ? "true" : undefined}
+                  className={cn(
+                    "inline-flex min-h-11 items-center px-3 h-11 text-sm transition-colors",
+                    active === link.id
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <AnimatedThemeToggler
+            theme={currentTheme}
+            onThemeChange={setTheme}
+            aria-label="Toggle theme"
+            className="inline-flex size-11 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground [&_svg]:size-5"
+          />
+        </div>
       </nav>
     </header>
   );

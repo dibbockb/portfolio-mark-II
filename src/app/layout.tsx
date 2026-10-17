@@ -1,9 +1,10 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Toaster } from "sonner";
+import { ThemeProvider } from "next-themes";
 import { Footer } from "@/components/footer";
 import { MotionProvider } from "@/components/motion-provider";
 import { Navbar } from "@/components/navbar";
+import { ThemeToaster } from "@/components/theme-toaster";
 import { profile } from "@/data/profile";
 import "./globals.css";
 import { Hanken_Grotesk } from "next/font/google";
@@ -37,25 +38,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${hankenGrotesk.className} bg-background text-foreground`}>
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-60 focus:rounded-md focus:bg-primary focus:px-3 focus:py-2 focus:text-sm focus:text-primary-foreground"
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
         >
-          Skip to content
-        </a>
-        <MotionProvider>
-          <Navbar name={profile.name} />
-          <main id="main">{children}</main>
-          <Footer
-            name={profile.name}
-            github={profile.links.github}
-            linkedin={profile.links.linkedin}
-            x={profile.links.twitter}
-          />
-        </MotionProvider>
-        <Toaster theme="dark" position="bottom-right" />
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-60 focus:rounded-md focus:bg-primary focus:px-3 focus:py-2 focus:text-sm focus:text-primary-foreground"
+          >
+            Skip to content
+          </a>
+          <MotionProvider>
+            <Navbar name={profile.name} />
+            <main id="main">{children}</main>
+            <Footer
+              name={profile.name}
+              github={profile.links.github}
+              linkedin={profile.links.linkedin}
+              x={profile.links.twitter}
+            />
+          </MotionProvider>
+          <ThemeToaster />
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>
