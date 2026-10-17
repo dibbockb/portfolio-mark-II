@@ -33,6 +33,8 @@ export function Navbar({ name }: { name: string }) {
                 <a
                   href={`#${link.id}`}
                   aria-current={active === link.id ? "true" : undefined}
+                  data-umami-event="nav-jump"
+                  data-umami-event-section={link.id}
                   className={cn(
                     "inline-flex min-h-11 items-center px-3 h-11 text-sm transition-colors",
                     active === link.id

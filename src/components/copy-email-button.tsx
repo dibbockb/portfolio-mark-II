@@ -4,6 +4,7 @@ import { Check, Copy } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { track } from "@/lib/analytics";
 
 // Small icon button that copies an email address and toasts on success.
 export function CopyEmailButton({ email }: { email: string }) {
@@ -24,6 +25,7 @@ export function CopyEmailButton({ email }: { email: string }) {
       }
       setCopied(true);
       toast.success("Email copied to clipboard");
+      track("email-copied");
       window.setTimeout(() => setCopied(false), 1500);
     } catch {
       toast.error("Could not copy email");

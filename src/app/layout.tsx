@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
+import Script from "next/script";
 import { ThemeProvider } from "next-themes";
 import { Footer } from "@/components/footer";
 import { MotionProvider } from "@/components/motion-provider";
@@ -10,6 +11,16 @@ import "./globals.css";
 import { Hanken_Grotesk } from "next/font/google";
 
 const hankenGrotesk = Hanken_Grotesk({ subsets: ["latin"], display: "swap" });
+
+// Self-hosted Umami can point elsewhere; Cloud is the default.
+const umamiSrc =
+  process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL ??
+  "https://cloud.umami.is/script.js";
+const umamiWebsiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
+// Restricts collection to the production host, keeping dev and preview deploys
+// out of the numbers. Comma-separate for extra hosts, e.g. "dibbockb.com,www.dibbockb.com".
+const umamiDomains =
+  process.env.NEXT_PUBLIC_UMAMI_DOMAINS ?? new URL(profile.siteUrl).hostname;
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.siteUrl),
@@ -65,6 +76,17 @@ export default function RootLayout({
           <ThemeToaster />
         </ThemeProvider>
         <Analytics />
+        {umamiWebsiteId && (
+          <Script
+            src={umamiSrc}
+            strategy="afterInteractive"
+            data-website-id={umamiWebsiteId}
+            data-domains={umamiDomains}
+            data-exclude-hash="true"
+            data-do-not-track="true"
+            data-performance="true"
+          />
+        )}
       </body>
     </html>
   );

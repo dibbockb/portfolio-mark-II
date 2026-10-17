@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { type ContactResult, sendContactMessage } from "@/app/actions/contact";
 import { Button } from "@/components/ui/button";
 import { Input, Label, Textarea } from "@/components/ui/field";
+import { track } from "@/lib/analytics";
 import { Spinner } from "./ui/spinner";
 
 const initialState: ContactResult = { ok: false, message: "" };
@@ -28,6 +29,7 @@ export function ContactForm() {
     if (state.ok && state.message && !announcedRef.current) {
       announcedRef.current = true;
       toast.success(state.message);
+      track("contact-submitted");
       formRef.current?.reset();
       setFormValues({ name: "", email: "", message: "" });
     } else if (!state.ok) {

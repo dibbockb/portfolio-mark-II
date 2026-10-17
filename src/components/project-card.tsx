@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { ProjectVideo } from "@/components/project-video";
 import { EASE_RISE } from "@/components/reveal";
+import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/types/types";
 
@@ -91,6 +92,7 @@ function ProjectImage({
         onPointerLeave={() => setDismissed(false)}
         onFocus={() => setDismissed(false)}
         onClick={(event) => {
+          track("project-media-open", { project: project.slug });
           setDismissed(true);
           // A mouse click leaves focus behind; release it so focus-within
           // doesn't re-reveal the badge on the next pointer move.
@@ -125,6 +127,8 @@ function ProjectLinks({ project }: { project: Project }) {
           href={project.links.docs}
           target="_blank"
           rel="noopener noreferrer"
+          data-umami-event="project-docs"
+          data-umami-event-project={project.slug}
           className="text-foreground underline underline-offset-4 hover:text-foreground-hover"
         >
           API docs
@@ -135,6 +139,8 @@ function ProjectLinks({ project }: { project: Project }) {
           href={project.links.live}
           target="_blank"
           rel="noopener noreferrer"
+          data-umami-event="project-live"
+          data-umami-event-project={project.slug}
           className="text-foreground underline underline-offset-4 hover:text-foreground-hover"
         >
           Live
@@ -144,6 +150,8 @@ function ProjectLinks({ project }: { project: Project }) {
         href={project.links.repository}
         target="_blank"
         rel="noopener noreferrer"
+        data-umami-event="project-repo"
+        data-umami-event-project={project.slug}
         className="text-foreground underline underline-offset-4 hover:text-foreground-hover"
       >
         Repo

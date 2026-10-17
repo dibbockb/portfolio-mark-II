@@ -22,6 +22,7 @@ export function Contact({ profile }: { profile: Profile }) {
             <div className="flex items-center gap-2">
               <a
                 href={`mailto:${profile.email}`}
+                data-umami-event="email-click"
                 className="break-all text-lg font-medium text-foreground underline underline-offset-4 hover:text-foreground-hover"
               >
                 {profile.email}

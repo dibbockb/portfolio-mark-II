@@ -27,6 +27,7 @@ export function Hero({ profile }: { profile: Profile }) {
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <a
             href="#work"
+            data-umami-event="cta-view-work"
             className="inline-flex h-10 items-center justify-center rounded-xl bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
           >
             View work
@@ -35,6 +36,7 @@ export function Hero({ profile }: { profile: Profile }) {
             href={profile.resume}
             target="_blank"
             rel="noopener noreferrer"
+            data-umami-event="resume-open"
             className="inline-flex h-10 items-center justify-center rounded-xl border border-border px-4 text-sm font-medium text-foreground transition-colors hover:border-border-hover hover:bg-card-hover"
           >
             Resume
