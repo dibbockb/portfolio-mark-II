@@ -18,6 +18,11 @@ export type TransitionVariant =
 interface AnimatedThemeTogglerProps extends React.ComponentPropsWithoutRef<"button"> {
   duration?: number
   variant?: TransitionVariant
+  /**
+   * Timing function for the reveal, e.g. `cubic-bezier(.73,.35,.53,.93)`.
+   * Defaults to the built-in curve (`linear` for the `star` variant).
+   */
+  easing?: string
   /** When true, the transition expands from the viewport center instead of the button center. */
   fromCenter?: boolean
   /**
@@ -152,8 +157,9 @@ function getThemeTransitionClipPaths(
 
 export const AnimatedThemeToggler = ({
   className,
-  duration = 500,
+  duration = 600,
   variant,
+  easing,
   fromCenter = false,
   theme,
   onThemeChange,
@@ -296,7 +302,7 @@ export const AnimatedThemeToggler = ({
             {
               duration,
               // Star: linear avoids easing overshoot that fights polygon interpolation at t→1; VT group duration is synced above.
-              easing: shape === "star" ? "linear" : "ease-in-out",
+              easing: easing ?? (shape === "star" ? "linear" : "ease-in-out"),
               fill: "forwards",
               pseudoElement: "::view-transition-new(root)",
             }
@@ -309,6 +315,7 @@ export const AnimatedThemeToggler = ({
     shape,
     fromCenter,
     duration,
+    easing,
     isDark,
     isControlled,
     onThemeChange,

@@ -48,6 +48,7 @@ export function Navbar({ name }: { name: string }) {
           <AnimatedThemeToggler
             theme={currentTheme}
             onThemeChange={setTheme}
+            easing="cubic-bezier(.53,.01,.34,.93)"
             aria-label="Toggle theme"
             className="inline-flex size-11 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground [&_svg]:size-5"
           />
