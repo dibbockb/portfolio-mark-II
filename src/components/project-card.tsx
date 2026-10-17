@@ -34,7 +34,7 @@ function ProjectImage({
   const [dismissed, setDismissed] = useState(false);
 
   const wrapper = cn(
-    "group/media relative overflow-hidden rounded-[12px] border border-border bg-background",
+    "group/media relative overflow-hidden rounded-xl border border-border bg-background",
     large ? "md:w-2/5" : "w-full",
   );
   // Centered "open in a new tab" affordance, revealed on hover or keyboard focus.
