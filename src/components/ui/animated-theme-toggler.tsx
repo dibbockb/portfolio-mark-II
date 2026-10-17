@@ -152,7 +152,7 @@ function getThemeTransitionClipPaths(
 
 export const AnimatedThemeToggler = ({
   className,
-  duration = 400,
+  duration = 500,
   variant,
   fromCenter = false,
   theme,
@@ -280,7 +280,7 @@ export const AnimatedThemeToggler = ({
       flushSync(applyTheme)
     })
     if (typeof transition?.finished?.finally === "function") {
-      transition.finished.finally(cleanup).catch(() => {})
+      transition.finished.finally(cleanup).catch(() => { })
     } else {
       cleanup()
     }
@@ -303,7 +303,7 @@ export const AnimatedThemeToggler = ({
           )
           activeAnimRef.current = anim
         })
-        .catch(() => {})
+        .catch(() => { })
     }
   }, [
     shape,

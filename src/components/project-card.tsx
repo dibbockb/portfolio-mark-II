@@ -79,7 +79,7 @@ function ProjectLinks({ project }: { project: Project }) {
       {/* {project.caseStudy && (
         <a
           href={`/projects/${project.slug}`}
-          className="text-foreground underline underline-offset-4 hover:text-white"
+          className="text-foreground underline underline-offset-4 hover:text-foreground-hover"
         >
           Case study
         </a>
@@ -89,7 +89,7 @@ function ProjectLinks({ project }: { project: Project }) {
           href={project.links.docs}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-foreground underline underline-offset-4 hover:text-white"
+          className="text-foreground underline underline-offset-4 hover:text-foreground-hover"
         >
           API docs
         </a>
@@ -99,7 +99,7 @@ function ProjectLinks({ project }: { project: Project }) {
           href={project.links.live}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-foreground underline underline-offset-4 hover:text-white"
+          className="text-foreground underline underline-offset-4 hover:text-foreground-hover"
         >
           Live
         </a>
@@ -108,7 +108,7 @@ function ProjectLinks({ project }: { project: Project }) {
         href={project.links.repository}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-foreground underline underline-offset-4 hover:text-white"
+        className="text-foreground underline underline-offset-4 hover:text-foreground-hover"
       >
         Repo
       </a>
@@ -152,7 +152,7 @@ export function ProjectCard({
       whileHover={{ scale: 1.02, y: -2 }}
       transition={{ duration: 0.3, ease: EASE_RISE }}
       className={cn(
-        "group flex flex-col gap-5 rounded-xl border border-border bg-card p-5 transition-[background-color,border-color] duration-500 ease-[cubic-bezier(0.1,0,0.18,1)] hover:border-white/20 hover:bg-card-hover sm:p-6",
+        "group flex flex-col gap-5 rounded-xl border border-border bg-card p-5 transition-[background-color,border-color] duration-500 ease-[cubic-bezier(0.1,0,0.18,1)] hover:border-border-hover hover:bg-card-hover sm:p-6",
         large && "md:flex-row md:items-start",
       )}
     >
