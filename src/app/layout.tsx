@@ -29,6 +29,12 @@ export const metadata: Metadata = {
     template: `%s | ${profile.name}`,
   },
   description: profile.tagline,
+  // Dark Reader (the dominant dark-mode extension) skips any page that carries
+  // this lock, so it can't double-darken an already dark theme or re-run its
+  // style generation while the theme toggle animates.
+  other: {
+    "darkreader-lock": "true",
+  },
   openGraph: {
     title: `${profile.name} | ${profile.role}`,
     description: profile.tagline,

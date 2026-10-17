@@ -3,6 +3,7 @@
 import { useTheme } from "next-themes";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import { useActiveSection } from "@/hooks/use-active-section";
+import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 const LINKS = [
@@ -49,7 +50,10 @@ export function Navbar({ name }: { name: string }) {
           </ul>
           <AnimatedThemeToggler
             theme={currentTheme}
-            onThemeChange={setTheme}
+            onThemeChange={(nextTheme) => {
+              track("theme-toggle", { theme: nextTheme });
+              setTheme(nextTheme);
+            }}
             easing="cubic-bezier(.53,.01,.34,.93)"
             aria-label="Toggle theme"
             className="inline-flex size-11 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground [&_svg]:size-5"
