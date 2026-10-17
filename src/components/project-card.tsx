@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import { SquareArrowOutUpRight } from "lucide-react";
 import { motion } from "motion/react";
+import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { ProjectVideo } from "@/components/project-video";
 import { EASE_RISE } from "@/components/reveal";
@@ -27,48 +29,82 @@ function ProjectImage({
   project: Project;
   large?: boolean;
 }) {
+  // Hover/focus reveal stays in CSS (no pointer-state desync); this flag only
+  // suppresses the badge after a click so it can't stay stuck once the new tab opens.
+  const [dismissed, setDismissed] = useState(false);
+
   const wrapper = cn(
     "group/media relative overflow-hidden rounded-[12px] border border-border bg-background",
     large ? "md:w-2/5" : "w-full",
   );
-  const dim =
-    "pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-500 ease-[cubic-bezier(0.1,0,0.18,1)] group-hover/media:bg-black/25";
-  if (project.video) {
-    return (
-      <div className={wrapper}>
-        <ProjectVideo
-          src={project.video.src}
-          webmSrc={project.video.webmSrc}
-          poster={project.video.poster ?? project.image?.src}
-          label={project.image?.alt ?? `${project.title} demo`}
-          delayMs={project.video.startDelayMs ?? 500}
-        />
-        <div aria-hidden="true" className={dim} />
-      </div>
-    );
+  // Centered "open in a new tab" affordance, revealed on hover or keyboard focus.
+  const openBadge = cn(
+    "pointer-events-none absolute inset-0 flex items-center justify-center transition-opacity duration-300 ease-[cubic-bezier(0.1,0,0.18,1)]",
+    dismissed
+      ? "opacity-0"
+      : "opacity-0 group-hover/media:opacity-100 group-focus-within/media:opacity-100",
+  );
+  // Dimming is scoped to the media itself, so the badge and card text stay bright.
+  const mediaLayer =
+    "transition-[filter] duration-300 ease-[cubic-bezier(0.1,0,0.18,1)] group-hover/media:brightness-[0.6]";
+
+  const media = project.video ? (
+    <ProjectVideo
+      src={project.video.src}
+      webmSrc={project.video.webmSrc}
+      poster={project.video.poster ?? project.image?.src}
+      label={project.image?.alt ?? `${project.title} demo`}
+      delayMs={project.video.startDelayMs ?? 500}
+    />
+  ) : project.image ? (
+    <Image
+      src={project.image.src}
+      alt={project.image.alt}
+      width={800}
+      height={500}
+      sizes={
+        large
+          ? "(max-width: 768px) 100vw, 40vw"
+          : "(max-width: 768px) 100vw, 50vw"
+      }
+      className="h-auto w-full object-cover"
+    />
+  ) : (
+    <ImageFallback title={project.title} />
+  );
+
+  const live = project.links.live;
+
+  // Only a live demo gets the new-tab affordance; other media stays decorative.
+  if (!live) {
+    return <div className={wrapper}>{media}</div>;
   }
-  if (!project.image) {
-    return (
-      <div className={wrapper}>
-        <ImageFallback title={project.title} />
-      </div>
-    );
-  }
+
   return (
     <div className={wrapper}>
-      <Image
-        src={project.image.src}
-        alt={project.image.alt}
-        width={800}
-        height={500}
-        sizes={
-          large
-            ? "(max-width: 768px) 100vw, 40vw"
-            : "(max-width: 768px) 100vw, 50vw"
-        }
-        className="h-auto w-full object-cover"
-      />
-      <div aria-hidden="true" className={dim} />
+      <a
+        href={live}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Open ${project.title} live site in a new tab`}
+        onPointerEnter={() => setDismissed(false)}
+        onPointerLeave={() => setDismissed(false)}
+        onFocus={() => setDismissed(false)}
+        onClick={(event) => {
+          setDismissed(true);
+          // A mouse click leaves focus behind; release it so focus-within
+          // doesn't re-reveal the badge on the next pointer move.
+          if (event.detail > 0) event.currentTarget.blur();
+        }}
+        className="block h-full w-full focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
+      >
+        <div className={mediaLayer}>{media}</div>
+        <span aria-hidden="true" className={openBadge}>
+          <span className="inline-flex size-11 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white shadow-lg">
+            <SquareArrowOutUpRight className="size-5" />
+          </span>
+        </span>
+      </a>
     </div>
   );
 }
