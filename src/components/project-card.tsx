@@ -188,7 +188,7 @@ export function ProjectCard({
       whileHover={{ scale: 1.02, y: -2 }}
       transition={{ duration: 0.3, ease: EASE_RISE }}
       className={cn(
-        "group flex flex-col gap-5 rounded-xl border border-border bg-card p-5 transition-[background-color,border-color] duration-500 ease-[cubic-bezier(0.1,0,0.18,1)] hover:border-border-hover hover:bg-card-hover sm:p-6",
+        "group flex flex-col gap-5 rounded-xl border border-border bg-card p-5 shadow-card transition-[background-color,border-color] duration-500 ease-[cubic-bezier(0.1,0,0.18,1)] hover:border-border-hover hover:bg-card-hover sm:p-6",
         large && "md:flex-row md:items-start",
       )}
     >

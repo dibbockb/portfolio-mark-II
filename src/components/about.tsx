@@ -28,12 +28,12 @@ export function About({ profile }: { profile: Profile }) {
               width={128}
               height={128}
               sizes="128px"
-              className="h-32 w-32 shrink-0 rounded-full border border-border object-cover"
+              className="h-32 w-32 shrink-0 rounded-full border border-border object-cover shadow-card"
             />
           ) : (
             <div
               aria-hidden="true"
-              className="flex h-32 w-32 shrink-0 items-center justify-center rounded-full border border-border bg-card text-2xl font-semibold text-foreground"
+              className="flex h-32 w-32 shrink-0 items-center justify-center rounded-full border border-border bg-card text-2xl font-semibold text-foreground shadow-card"
             >
               {initials}
             </div>
