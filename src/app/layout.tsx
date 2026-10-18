@@ -15,10 +15,20 @@ const hankenGrotesk = Hanken_Grotesk({ subsets: ["latin"], display: "swap" });
 // Self-hosted Umami can point elsewhere; Cloud is the default.
 const umamiSrc = "https://cloud.umami.is/script.js";
 const umamiWebsiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
-// Restricts collection to the production host, keeping dev and preview deploys
-// out of the numbers. Comma-separate for extra hosts, e.g. "dibbockb.com,www.dibbockb.com".
-const umamiDomains =
-  process.env.NEXT_PUBLIC_UMAMI_DOMAINS ?? new URL(profile.siteUrl).hostname;
+// Include both production host variants; the canonical URL may redirect to www.
+// Additional hosts can be comma-separated, e.g. preview domains when needed.
+const siteHostname = new URL(profile.siteUrl).hostname.replace(/^www\./, "");
+const additionalUmamiDomains =
+  process.env.NEXT_PUBLIC_UMAMI_DOMAINS?.split(",")
+    .map((domain) => domain.trim())
+    .filter(Boolean) ?? [];
+const umamiDomains = [
+  ...new Set([
+    siteHostname,
+    `www.${siteHostname}`,
+    ...additionalUmamiDomains,
+  ]),
+].join(",");
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.siteUrl),
