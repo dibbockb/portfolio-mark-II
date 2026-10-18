@@ -111,6 +111,57 @@ function ProjectImage({
   );
 }
 
+// External project link: the arrow occupies a permanently reserved slot, so
+// revealing it never nudges the neighbouring links. Motion springs it in while
+// opacity fades on a quicker curve, and the label itself never moves.
+function ProjectLink({
+  href,
+  label,
+  event,
+  project,
+}: {
+  href: string;
+  label: string;
+  event: string;
+  project: string;
+}) {
+  return (
+    <motion.a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-umami-event={event}
+      data-umami-event-project={project}
+      initial={false}
+      animate="rest"
+      whileHover="hover"
+      whileFocus="hover"
+      onClick={(clickEvent) => {
+        // Match the media badge: a mouse click leaves focus behind, which would
+        // otherwise keep the arrow revealed. Keyboard activation keeps focus.
+        if (clickEvent.detail > 0) clickEvent.currentTarget.blur();
+      }}
+      className="inline-flex items-center gap-1 text-foreground hover:text-foreground-hover"
+    >
+      <span className="underline underline-offset-4">{label}</span>
+      <motion.span
+        aria-hidden="true"
+        variants={{
+          rest: { opacity: 0, x: -3, y: 2, scale: 0.85 },
+          hover: { opacity: 1, x: 0, y: 0, scale: 1 },
+        }}
+        transition={{
+          default: { type: "spring", stiffness: 320, damping: 26, mass: 0.7 },
+          opacity: { duration: 0.18, ease: EASE_RISE },
+        }}
+        className="inline-flex size-3.5 items-center justify-center opacity-0"
+      >
+        <SquareArrowOutUpRight className="size-3" />
+      </motion.span>
+    </motion.a>
+  );
+}
+
 function ProjectLinks({ project }: { project: Project }) {
   return (
     <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
@@ -123,39 +174,27 @@ function ProjectLinks({ project }: { project: Project }) {
         </a>
       )} */}
       {project.links.docs && (
-        <a
+        <ProjectLink
           href={project.links.docs}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-umami-event="project-docs"
-          data-umami-event-project={project.slug}
-          className="text-foreground underline underline-offset-4 hover:text-foreground-hover"
-        >
-          API docs
-        </a>
+          label="API docs"
+          event="project-docs"
+          project={project.slug}
+        />
       )}
       {project.links.live && (
-        <a
+        <ProjectLink
           href={project.links.live}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-umami-event="project-live"
-          data-umami-event-project={project.slug}
-          className="text-foreground underline underline-offset-4 hover:text-foreground-hover"
-        >
-          Live
-        </a>
+          label="Live"
+          event="project-live"
+          project={project.slug}
+        />
       )}
-      <a
+      <ProjectLink
         href={project.links.repository}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-umami-event="project-repo"
-        data-umami-event-project={project.slug}
-        className="text-foreground underline underline-offset-4 hover:text-foreground-hover"
-      >
-        Repo
-      </a>
+        label="Repo"
+        event="project-repo"
+        project={project.slug}
+      />
     </div>
   );
 }
@@ -182,7 +221,8 @@ function ProjectBody({ project }: { project: Project }) {
   );
 }
 
-// Card hover lifts slightly (scale + dim share the rise ease).
+// Hover feedback is colour only (background + border); no transform, so the
+// card never shifts under the pointer.
 export function ProjectCard({
   project,
   large = false,
@@ -191,10 +231,7 @@ export function ProjectCard({
   large?: boolean;
 }) {
   return (
-    <motion.article
-      initial={false}
-      whileHover={{ scale: 1.02, y: -2 }}
-      transition={{ duration: 0.3, ease: EASE_RISE }}
+    <article
       className={cn(
         "group flex flex-col gap-5 rounded-xl border border-border bg-card p-5 shadow-card transition-[background-color,border-color] duration-500 ease-[cubic-bezier(0.1,0,0.18,1)] hover:border-border-hover hover:bg-card-hover sm:p-6",
         large && "md:flex-row md:items-start",
@@ -202,6 +239,6 @@ export function ProjectCard({
     >
       <ProjectImage project={project} large={large} />
       <ProjectBody project={project} />
-    </motion.article>
+    </article>
   );
 }
