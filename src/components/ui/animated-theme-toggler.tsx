@@ -1,7 +1,7 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
 import { Moon, Sun } from "lucide-react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { flushSync } from "react-dom"
 
 import { cn } from "@/lib/utils"
@@ -167,11 +167,16 @@ export const AnimatedThemeToggler = ({
 }: AnimatedThemeTogglerProps) => {
   const shape = variant ?? "circle"
   const isControlled = theme !== undefined
+  const [mounted, setMounted] = useState(false)
   const [internalIsDark, setInternalIsDark] = useState(false)
   const isDark = isControlled ? theme === "dark" : internalIsDark
   const buttonRef = useRef<HTMLButtonElement>(null)
   const isTransitioningRef = useRef(false)
   const activeAnimRef = useRef<Animation | null>(null)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const cancelAnim = useCallback(() => {
     activeAnimRef.current?.cancel()
@@ -330,7 +335,7 @@ export const AnimatedThemeToggler = ({
       className={cn(className)}
       {...props}
     >
-      {isDark ? <Sun /> : <Moon />}
+      {mounted && isDark ? <Sun /> : <Moon />}
       <span className="sr-only">Toggle theme</span>
     </button>
   )
